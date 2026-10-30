@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router'
 import App from '@/App'
 import { CatalogoPeliculas } from '@/features/peliculas/pages/CatalogoPeliculas'
+import { DetallePelicula } from '@/features/peliculas/pages/DetallePelicula'
 import { MisFavoritas } from '@/features/favoritas/pages/MisFavoritas'
 import { NoEncontrada } from '@/core/layout/NoEncontrada'
 import { Estrenos } from '@/features/peliculas/pages/Estrenos'
@@ -16,7 +17,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'peliculas',
-        element: <CatalogoPeliculas esFavorita={() => false} onFavorito={() => {}} />,
+        element: <CatalogoPeliculas />,
+      },
+      {
+        path: 'peliculas/:id',
+        element: <DetallePelicula />,
       },
       {
         path: 'estrenos',
@@ -24,7 +29,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'favoritas',
-        element: <MisFavoritas favoritas={[]} onFavorito={() => {}} onIrAlCatalogo={() => {}} />,
+        element: <MisFavoritas />,
       },
       {
         path: '*',

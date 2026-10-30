@@ -3,12 +3,12 @@ import { Link, NavLink } from 'react-router'
 import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { useFavoritas } from '../favoritas/favoritas-context'
 
-interface Props {
-  totalFavoritas?: number
-}
+export function Header() {
+  const { favoritas } = useFavoritas()
+  const totalFavoritas = favoritas.length
 
-export function Header({ totalFavoritas = 0 }: Props) {
   return (
     <header className="sticky top-0 z-20 border-b bg-background/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-6 py-4">

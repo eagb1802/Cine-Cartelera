@@ -4,6 +4,7 @@ import { EsqueletoGrilla } from '@/shared/components/EsqueletoGrilla'
 import { MensajeError } from '@/shared/components/MensajeError'
 import { Paginador } from '@/shared/components/Paginador'
 import { MAX_PAGINAS } from '@/shared/models/pagina'
+import { useFavoritas } from '@/core/favoritas/favoritas-context'
 import { GrillaPeliculas } from '../components/GrillaPeliculas'
 import { useEstrenos } from '../hooks/usePeliculas'
 import type { PeliculaResumen } from '../models/pelicula'
@@ -34,7 +35,11 @@ const PAISES = [
   { codigo: 'VE', nombre: 'Venezuela' },
 ]
 
-export function Estrenos({ esFavorita = () => false, onFavorito = () => {} }: Props) {
+export function Estrenos({ esFavorita: esFavoritaProp, onFavorito: onFavoritoProp }: Props) {
+  const contextoFavoritas = useFavoritas()
+  const esFavorita = esFavoritaProp ?? contextoFavoritas.esFavorita
+  const onFavorito = onFavoritoProp ?? contextoFavoritas.alternar
+
   const [pagina, setPagina] = useState(1)
   const [region, setRegion] = useState('todos')
 
