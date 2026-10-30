@@ -1,5 +1,6 @@
-// TODO M6 · Hooks de la feature: combinan useConsulta con el servicio.
-//   usePeliculas({ busqueda, genero, orden, pagina })  -> buscar o descubrir
-//   useGeneros()                                       -> la lista de géneros (o [])
-//   usePelicula(id)                                    -> el detalle (lo usamos en M8)
-export {}
+import { useConsulta } from '@/shared/hooks/useConsulta'
+import { obtenerEstrenos } from '../services/peliculas.service'
+
+export function useEstrenos(pagina: number, region?: string) {
+  return useConsulta((signal) => obtenerEstrenos(pagina, region, signal), [pagina, region])
+}
